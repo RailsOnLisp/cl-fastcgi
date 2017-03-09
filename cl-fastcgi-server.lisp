@@ -13,7 +13,7 @@
   (with-foreign-object (req 'fcgx-request)
     (fcgx-init-request req fd flags)
     (do ((rc (fcgx-accept req) (fcgx-accept req)))
-        ((< rc 0) "ACCEPT ERROR")
+        ((< rc 0) rc)
       (funcall func req)
       (fcgx-finish req))))
 
